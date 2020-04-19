@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>health calculator</title>
+	<script>
+		var w, h, BMI, BMR, age;	
+
+		function getBMI(){
+			
+			w = document.getElementById('weight').value;
+			h = document.getElementById('height').value;
+			age = document.getElementById('age').value;
+
+			BMI = w/((h/100)*(h/100));
+			BMI = BMI.toFixed(2);
+			
+			var sexArr = document.all('sex');
+			if (sexArr[0].checked){
+				BMR = Math.trunc((10*w)+(6.25*h)-(5.25*age)+5);
+			}else if(sexArr[1].checked){
+				BMR = Math.trunc((10*w)+(6.25*h)-(5.25*age)-161);
+			}else{
+				
+				if(w=="" ||h ==""||age==""){
+					alert("please input your data")
+					return;
+					
+				}else{
+					alert("Please select your gender")
+					return;
+				}
+			}
+			
+			document.getElementById('BMI').innerHTML = "Your BMI is &nbsp;" + BMI + ", and you BMR is &nbsp;" + BMR;
+			
+			
+			
+			
+		}
+	</script>
+</head>
+
+<body>
+	<div>
+		<p>
+			Input your weight(kg) please
+		</p>
+		<input type = "text" name="weight" id="weight"><br>
+		<p>
+			Input your height(cm) please
+		</p>
+		<input type = "text" name="height" id="height"><br>
+		<p>
+			Input your age please
+		</p>
+		<input type = "text" name="age" id="age"><br>
+		
+		You are <input type = "radio" name="sex" id = "male" value = "male">male<input type = "radio" name="sex" id = "female" value = "female">female<br>
+		<p id="BMI">Just input your data and easy get your BMI and BMR</p><br>
+		<button onclick = "getBMI()">get BMI</button>
+	
+	</div>
+				
+</body>
+</html>
